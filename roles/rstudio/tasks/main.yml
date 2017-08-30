@@ -1,0 +1,5 @@
+---
+- name: Download and install RStudio Server
+  apt:
+    deb: "{{ rstudiourl }}{{ rstudiodeb }}"
+    state: present

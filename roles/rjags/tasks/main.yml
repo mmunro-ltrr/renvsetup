@@ -1,0 +1,46 @@
+---
+- name: Setup a CRAN mirror as a source for apt packages
+  apt_repository:
+    repo: deb {{ cranmirror }}/bin/linux/ubuntu {{ releasename }}/
+    state: present
+    filename: cran
+
+- name: Add the Ubuntu-specific apt key for CRAN
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: E084DAB9
+
+- name: Ensure that R, JAGS and their dependencies are installed
+  apt:
+    update_cache: yes
+    state: present
+    name: "{{ item }}"
+  with_items:
+    - "default-jdk"
+    - "default-jre"
+    - "freeglut3-dev"
+    - "gdebi-core"
+    - "libcurl4-openssl-dev"
+    - "libgdal-dev"
+    - "libglu1-mesa-dev"
+    - "libgsl-dev"
+    - "libproj-dev"
+    - "libssl-dev"
+    - "libx11-dev"
+    - "libxml2-dev"
+    - "mesa-common-dev"
+    - "r-base"
+    - "r-base-dev"
+    - "r-cran-coda"
+    - "r-cran-littler"
+    - "r-cran-plyr"
+    - "r-cran-reshape"
+    - "r-cran-reshape2"
+    - "r-cran-rgl"
+    - "r-cran-rglpk"
+    - "r-cran-rjags"
+    - "r-cran-rjava"
+    - "r-cran-rmysql"
+    - "r-cran-rsymphony"
+    - "r-cran-xml"
+    - "xml2"

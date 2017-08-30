@@ -1,0 +1,12 @@
+---
+- name: Apply pending OS updates
+  apt:
+    upgrade: yes
+    update_cache: yes
+
+- name: Force a server reboot after updates
+  command: shutdown -r now
+
+- name: Wait for it to come back up
+  wait_for_connection:
+    delay: 30

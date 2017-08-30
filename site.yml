@@ -1,0 +1,14 @@
+---
+- name: Base OS configuration
+  hosts: all
+  remote_user: mmunro
+  become: yes
+
+- name: R environment setup
+  hosts: rstudioservers
+  remote_user: mmunro
+  become: yes
+
+  roles:
+    - rjags
+    - rstudio
